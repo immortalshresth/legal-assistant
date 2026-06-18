@@ -16,9 +16,15 @@ app = FastAPI(
 
 # Enable CORS (Cross-Origin Resource Sharing)
 # This allows your Next.js frontend to safely call this backend
+# Create a specific list of allowed URLs
+origins = [
+    "http://localhost:3000", # Keeps local testing working
+    "https://https://legal-assistant-frontend-gamma.vercel.app/", # MUST be your actual Vercel URL!
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with your frontend URL (e.g., ["http://localhost:3000"])
+    allow_origins=origins, # Pass the list here instead of ["*"]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
