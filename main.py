@@ -19,7 +19,7 @@ app = FastAPI(
 # Create a specific list of allowed URLs
 origins = [
     "http://localhost:3000", # Keeps local testing working
-    "https://https://legal-assistant-frontend-gamma.vercel.app/", # MUST be your actual Vercel URL!
+    "https://https://legal-assistant-frontend-gamma.vercel.app", # MUST be your actual Vercel URL!
 ]
 
 app.add_middleware(
