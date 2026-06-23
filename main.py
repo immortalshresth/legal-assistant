@@ -22,10 +22,11 @@ origins = [
     "https://https://legal-assistant-frontend-gamma.vercel.app", # MUST be your actual Vercel URL!
 ]
 
+# The Nuclear Option: Allow all origins, but we MUST set credentials to False
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins, # Pass the list here instead of ["*"]
-    allow_credentials=True,
+    allow_origins=["*"], 
+    allow_credentials=False, # This MUST be False when using "*"
     allow_methods=["*"],
     allow_headers=["*"],
 )
