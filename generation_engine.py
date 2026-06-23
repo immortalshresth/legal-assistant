@@ -1,6 +1,25 @@
 import os
 import time
-import google.generativeai as genai
+from google import genai # UPDATED IMPORT
+
+class LegalGenerationEngine:
+    def __init__(self):
+        # Initialize the new Client architecture
+        api_key = os.getenv("GEMINI_API_KEY")
+        self.client = genai.Client(api_key=api_key)
+
+    def generate_answer(self, query: str, context_chunks: list) -> str:
+        # Assemble your prompt (keep your existing prompt building logic here)
+        context_text = "\n\n".join([chunk.payload.get("document", "") for chunk in context_chunks])
+        prompt = f"Using the following legal context, answer the query.\nContext: {context_text}\nQuery: {query}"
+
+        # UPDATED GENERATION CALL
+        response = self.client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt,
+        )
+        
+        return response.text
 from dotenv import load_dotenv
 
 load_dotenv()
