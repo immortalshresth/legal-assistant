@@ -25,8 +25,9 @@ class LegalRetrievalEngine:
         )
         return result['embedding']
 
-    def search_context(self, query: str, top_k: int = 3):
-        # Get query embedding using the same API model
+    # 🔄 Rename this from search_context to hybrid_search
+    def hybrid_search(self, query: str, top_k: int = 3):
+        # Get query embedding using the Gemini API model
         query_vector = genai.embed_content(
             model="models/text-embedding-004",
             contents=query,
